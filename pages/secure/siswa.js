@@ -42,6 +42,7 @@ export default function Pengajar({ siswa, kelas }) {
         data.push({
             key: item._id,
             nama: item?.name,
+            password: item?.password,
             nis: item?.nis,
             alamat: item?.alamat,
             tgl: dayjs(item?.tgl).format("DD/MM/YY"),
@@ -287,7 +288,7 @@ export default function Pengajar({ siswa, kelas }) {
     }
 
 
-    const items = (id) => {
+    const items = (id, password) => {
         return [
             {
                 label: (
@@ -315,6 +316,9 @@ export default function Pengajar({ siswa, kelas }) {
                 label: (
                     <a onClick={e => {
                         e.preventDefault()
+                        passForm.setFieldsValue({
+                            password: password || ""
+                        })
                         setPassOpen(true)
                         setId(id)
                     }}>
@@ -418,7 +422,7 @@ export default function Pengajar({ siswa, kelas }) {
             render: (_, record) => (
                 <Dropdown
                     menu={{
-                        items: items(record.key)
+                        items: items(record.key, record.password)
                     }}
                 >
                     <a onClick={(e) => e.preventDefault()}>
