@@ -48,7 +48,7 @@ export default function Ekstrakurikuler({ ekstrakurikuler }) {
 
     const handleReject = async (id) => {
         Swal.fire({
-            title: "Yakin ingin meng aprovenya?",
+            title: "Apakah yakin anda tidak menggaprove?",
             showDenyButton: true,
             // showCancelButton: true,
             confirmButtonText: "Iya",
@@ -72,10 +72,10 @@ export default function Ekstrakurikuler({ ekstrakurikuler }) {
                 <Breadcrumb
                     items={[
                         {
-                            title: <Link href="/">Dashboard</Link>,
+                            title: <Link href="/secure/dashboard">Dashboard</Link>,
                         },
                         {
-                            title: <Link href="/ekstrakurikuler">Ekstrakurikuler</Link>,
+                            title: <Link href="/secure/ekstrakurikuler">Ekstrakurikuler</Link>,
                         },
                         {
                             title: "Approve",

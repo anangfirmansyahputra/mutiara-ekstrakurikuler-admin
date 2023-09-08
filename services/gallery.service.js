@@ -30,6 +30,12 @@ const galleryService = {
 
         return data
     },
+
+    async find(id) {
+        const { data } = await http.get(`/gallery/${id}`)
+
+        return data
+    },
 };
 
 export default galleryService;

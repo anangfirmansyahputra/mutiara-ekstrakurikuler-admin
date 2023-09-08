@@ -282,7 +282,7 @@ export default function Prestasi({ kelas, prestasi, siswa, ekstrakurikuler }) {
                     </Button>
                 </div>
                 {/* <Input style={{ width: 300, marginBottom: 20 }} /> */}
-                <div className="grid grid-cols-4 gap-5 mb-5">
+                <div className="grid grid-cols-3 gap-5 mb-5">
                     {prestasi?.data?.map((item) => (
                         <Card
                             className="shadow"
@@ -290,7 +290,8 @@ export default function Prestasi({ kelas, prestasi, siswa, ekstrakurikuler }) {
                                 <img
                                     alt={item?.siswa?.name}
                                     src={item?.img}
-                                    height={250}
+                                    // height={250}
+                                    className='aspect-square object-contain bg-gray-50'
                                 />
                             }
                             actions={[
@@ -318,8 +319,13 @@ export default function Prestasi({ kelas, prestasi, siswa, ekstrakurikuler }) {
                                 </Popconfirm>,
                             ]}>
                             <Meta
-                                title={`${item?.deskripsi} (${item?.ekstrakurikuler?.name})`}
-                                description={item?.siswa?.name}
+                                title={`${item?.deskripsi}`}
+                                description={
+                                    <div className='flex flex-col'>
+                                        <span>{item?.siswa?.name}</span>
+                                        <span className='font-semibold text-slate-900'>{item?.ekstrakurikuler?.name}</span>
+                                    </div>
+                                }
                             />
                         </Card>
                     ))}
@@ -355,7 +361,7 @@ export default function Prestasi({ kelas, prestasi, siswa, ekstrakurikuler }) {
                                 </Col>
                                 <Col span={12}>
                                     <Form.Item label="Ekstrakurikuler" name="ekstrakurikuler" required rules={[{ message: "Mohon pilih ekstrakurikulelr", required: true }]}>
-                                        <Select placeholder="Ekstrakurikuler" options={ekstrakurikuler?.map(item => ({
+                                        <Select placeholder="Ekstrakurikuler" options={ekstrakurikuler?.filter(item => item.approve === true)?.map(item => ({
                                             label: item?.name,
                                             value: item?._id
                                         }))} />
