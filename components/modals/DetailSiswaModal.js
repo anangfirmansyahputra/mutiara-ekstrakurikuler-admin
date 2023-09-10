@@ -7,7 +7,7 @@ export default function DetailSiswaModal(props) {
     const pilihan = data?.nilai?.ekstrakurikulerPilihan
 
     const totalNilai = (akademik, data) => {
-        const nilaiAkademik = (akademik * 60) / 100
+        const nilaiAkademik = (akademik * 70 / 100)
         // const nilaiAbsen = ((absen / 14) * 100) * 40 / 100
         const totalTrue = data?.filter((item) => item === true).length;
 
@@ -15,19 +15,18 @@ export default function DetailSiswaModal(props) {
         const totalLength = data?.length;
 
         // Menghitung persentase nilai true
-        const percentageTrue = Math.ceil(((totalTrue / totalLength) * 100) * 40 / 100);
 
+        const nilaiAbsen = Math.ceil(((totalTrue / totalLength) * 100) * 30 / 100);
 
-        const nilaiTotal = percentageTrue + nilaiAkademik
+        const nilaiTotal = nilaiAbsen + nilaiAkademik
 
-        if (nilaiTotal >= 86) {
-            return 'A'
-        } else if (nilaiTotal >= 76 && nilaiTotal <= 85) {
-            return 'B'
+        if (nilaiTotal > 85) {
+            return `${nilaiTotal} | A`
+        } else if (nilaiTotal >= 75 && nilaiTotal < 86) {
+            return `${nilaiTotal} | B`
         } else {
-            return 'C'
+            return `${nilaiTotal} | C`
         }
-
     }
 
     const nilaiAbsen = (data) => {
