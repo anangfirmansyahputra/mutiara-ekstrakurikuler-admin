@@ -37,7 +37,7 @@ export default function Gallery({ gallery, ekstrakurikuler }) {
             key: item._id,
             description: item?.description ?? "-",
             linkGallery: item?.linkGallery ?? "-",
-            ekstrakurikuler: item?.ekstrakurikuler?.name ?? "-",
+            ekstrakurikuler: item?.ekstrakurikuler?.name ?? "Sudah dihapus",
             tglUpload: dayjs(item?.tglUpload).format("DD/MM/YY") ?? "-",
         })
     );
@@ -198,12 +198,9 @@ export default function Gallery({ gallery, ekstrakurikuler }) {
 
     const handleEdit = async (id) => {
         try {
-            setOpen(true)
-            setId(id)
-            setIsEdit(true)
-
 
             const { data } = await galleryService.find(id)
+
             const findData = {
                 ekstrakurikuler: data.ekstrakurikuler._id,
                 linkGallery: data.linkGallery,
@@ -212,12 +209,15 @@ export default function Gallery({ gallery, ekstrakurikuler }) {
 
             form.setFieldsValue(findData);
 
+            setOpen(true)
+            setId(id)
+            setIsEdit(true)
         } catch (err) {
             console.log(err);
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Server sedang error, silahkan coba kembali"
+                text: "Data tidah bisa diubah karena ekstrakurikuler sudah dihapus"
             })
         }
     }
