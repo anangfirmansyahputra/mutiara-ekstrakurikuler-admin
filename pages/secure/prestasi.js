@@ -175,10 +175,9 @@ export default function Prestasi({ kelas, prestasi, siswa, ekstrakurikuler }) {
 
         var formData = new FormData();
 
-        if (values.images1 && values.images2) {
-            formData.append("images", values?.images1?.file?.originFileObj);
-            formData.append("images", values?.images2?.file?.originFileObj);
-        }
+        formData.append("images", values?.images1?.file?.originFileObj || null);
+
+        formData.append("images", values?.images2?.file?.originFileObj || null);
 
         formData.append("ekstrakurikuler", values?.ekstrakurikuler);
         formData.append("siswa", values.siswa);
