@@ -45,7 +45,7 @@ export default function Pengajar({ siswa, kelas }) {
             password: item?.password,
             nis: item?.nis,
             alamat: item?.alamat,
-            tgl: dayjs(item?.tgl).format("DD/MM/YY"),
+            tgl: dayjs(item?.tgl).format("DD/MM/YYYY"),
             nilai: item?.nilai,
             kelas: `${item?.kelas?.kelas ?? ""} ${item?.kelas?.name ?? "Kelas sudah dihapus"}`,
         })

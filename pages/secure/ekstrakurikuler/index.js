@@ -166,9 +166,15 @@ export default function Ekstrakurikuler({ ekstrakurikuler, pengajar }) {
 
 
             const res = await ekstrakurikulerService.find(id)
+            const data = {
+                ...res.data,
+                pengajar: res?.data?.pengajar?._id
+            }
+
+
             const startTime = dayjs(res.data?.waktu[0]);
             const endTime = dayjs(res.data?.waktu[1]);
-            form.setFieldsValue({ ...res.data, waktu: [startTime, endTime] });
+            form.setFieldsValue({ ...data, waktu: [startTime, endTime] });
 
         } catch (err) {
             console.log(err);
@@ -422,7 +428,7 @@ export default function Ekstrakurikuler({ ekstrakurikuler, pengajar }) {
                     setIsEdit(false)
                 } catch (err) {
                     console.log(err);
-                    const messageErr = JSON.parse(err?.request?.response)?.message
+                    const messageErr = JSON?.parse(err?.request?.response)?.message
                     Swal.fire({
                         icon: 'error',
                         title: "Gagal",

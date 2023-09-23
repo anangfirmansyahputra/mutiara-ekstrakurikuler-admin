@@ -56,7 +56,7 @@ export default function Absensi({ siswa, ekstrakurikuler }) {
         key: item._id,
         name: item.name,
         pendaftar: item.pendaftar.length,
-        pengajar: item.pengajar.nama,
+        pengajar: item.pengajar?.nama || "Pengajar sudah dihapus",
         wajib: item.wajib ? "Wajib" : "Pilihan",
     }))
 
