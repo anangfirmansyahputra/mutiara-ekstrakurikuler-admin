@@ -153,7 +153,7 @@ export default function NilaiModal(props) {
             ...getColumnSearchProps("kelas"),
         },
         {
-            title: "Nilai",
+            title: "Nilai Praktek",
             key: "nilai",
             dataIndex: "nilai"
         },
