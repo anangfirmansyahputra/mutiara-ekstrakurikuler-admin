@@ -1,4 +1,4 @@
-import { Button, Card, Col, Descriptions, Modal, Row } from "antd";
+import { Button, Card, Col, Descriptions, Modal, Row, Table } from "antd";
 import dayjs from "dayjs";
 
 export default function DetailSiswaModal(props) {
@@ -41,6 +41,67 @@ export default function DetailSiswaModal(props) {
         return percentageTrue
     }
 
+    const columns = [
+        {
+            title: 'Keterangan',
+            dataIndex: 'keterangan',
+            key: 'keterangan',
+        },
+        {
+            title: 'Persentase',
+            dataIndex: 'persentase',
+            key: 'persentase',
+        },
+    ];
+
+    const dataSource = [
+        {
+            key: '1',
+            keterangan: 'Nilai Absen',
+            persentase: '30%',
+        },
+        {
+            key: '2',
+            keterangan: 'Nilai Praktek',
+            persentase: '70%',
+        },
+        {
+            key: '3',
+            keterangan: 'Total',
+            persentase: '100%',
+        },
+    ];
+
+    const columns2 = [
+        {
+            title: 'Nilai Angka',
+            dataIndex: 'nilaiAngka',
+            key: 'nilaiAngka',
+        },
+        {
+            title: 'Nilai Huruf',
+            dataIndex: 'nilaiHuruf',
+            key: 'nilaiHuruf',
+        },
+    ];
+
+    const dataSource2 = [
+        {
+            key: '1',
+            nilaiAngka: '85 < nilai ≤ 100',
+            nilaiHuruf: 'A',
+        },
+        {
+            key: '2',
+            nilaiAngka: '75 ≤ nilai ≤ 85',
+            nilaiHuruf: 'B',
+        },
+        {
+            key: '3',
+            nilaiAngka: '0 ≤ nilai < 75',
+            nilaiHuruf: 'C',
+        },
+    ];
 
     return (
         <Modal open={props.open} onCancel={props.onCancel} footer={<Button onClick={() => props.onCancel()}>Tutup</Button>} width={1200} title="Detail Siswa" centered style={{
@@ -76,6 +137,16 @@ export default function DetailSiswaModal(props) {
                                 {totalNilai(wajib?.nilai, wajib?.kehadiran)}
                             </Descriptions.Item>
                         </Descriptions>
+                        <div className="flex w-full gap-5">
+                            <Table bordered style={{
+                                marginTop: "10px",
+                                width: "100%"
+                            }} columns={columns} dataSource={dataSource} pagination={false} />
+                            <Table bordered style={{
+                                marginTop: "10px",
+                                width: "100%"
+                            }} columns={columns2} dataSource={dataSource2} pagination={false} />
+                        </div>
                     </Col>
                     <Col span={12}>
                         <Descriptions size="small" bordered column={1}>
@@ -88,6 +159,16 @@ export default function DetailSiswaModal(props) {
                                 {totalNilai(pilihan?.nilai, pilihan?.kehadiran)}
                             </Descriptions.Item>
                         </Descriptions>
+                        <div className="flex w-full gap-5">
+                            <Table bordered style={{
+                                marginTop: "10px",
+                                width: "100%"
+                            }} columns={columns} dataSource={dataSource} pagination={false} />
+                            <Table bordered style={{
+                                marginTop: "10px",
+                                width: "100%"
+                            }} columns={columns2} dataSource={dataSource2} pagination={false} />
+                        </div>
                     </Col>
                 </Row>
             </Card>

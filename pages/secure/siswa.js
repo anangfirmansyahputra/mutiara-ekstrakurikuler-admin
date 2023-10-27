@@ -343,7 +343,7 @@ export default function Pengajar({ siswa, kelas }) {
                         e.preventDefault()
                         handleDelete(id)
                     }}>
-                        Delete
+                        Hapus
                     </a>
                 ),
                 key: '3',

@@ -263,7 +263,7 @@ export default function Ekstrakurikuler({ ekstrakurikuler, pengajar }) {
                         e.preventDefault()
                         handleDelete(id)
                     }}>
-                        Delete
+                        Hapus
                     </a>
                 ),
                 key: '2',
@@ -274,10 +274,10 @@ export default function Ekstrakurikuler({ ekstrakurikuler, pengajar }) {
 
     const columns = [
         {
-            title: "Nama",
+            title: "Nama Ekstrakurikuler",
             dataIndex: "name",
             key: "name",
-            width: "fit",
+            width: "200px",
             ...getColumnSearchProps("name"),
             // fixed: "left",
             // render: (_, record) => (
@@ -325,7 +325,7 @@ export default function Ekstrakurikuler({ ekstrakurikuler, pengajar }) {
             ...getColumnSearchProps("hari"),
         },
         {
-            title: "Status",
+            title: "Kategori",
             dataIndex: "wajib",
             key: "wajib",
             ...getColumnSearchProps("wajib"),
@@ -605,7 +605,7 @@ export default function Ekstrakurikuler({ ekstrakurikuler, pengajar }) {
                                             required: true
                                         }
                                     ]}
-                                    label="Status"
+                                    label="Kategori"
                                     name="wajib">
                                     <Radio.Group buttonStyle='solid' optionType='button'>
                                         <Radio value={true}>Wajib</Radio>

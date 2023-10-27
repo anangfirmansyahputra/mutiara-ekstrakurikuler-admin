@@ -159,7 +159,7 @@ export default function Page({ pengumuman }) {
 
     const columns = [
         {
-            title: "Title",
+            title: "Judul Pengumuman",
             dataIndex: "title",
             key: "title",
             // width: "300px",

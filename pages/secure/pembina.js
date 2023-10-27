@@ -195,14 +195,14 @@ export default function Pengajar({ pengajar, matpel }) {
             width: "200px",
             ...getColumnSearchProps("nik"),
         },
-        {
-            title: "Mengajar",
-            dataIndex: "mengajar",
-            key: "mengajar",
-            ...getColumnSearchProps("mengajar"),
-            sortDirections: ["descend", "ascend"],
-            width: "200px",
-        },
+        // {
+        //     title: "Mengajar",
+        //     dataIndex: "mengajar",
+        //     key: "mengajar",
+        //     ...getColumnSearchProps("mengajar"),
+        //     sortDirections: ["descend", "ascend"],
+        //     width: "200px",
+        // },
         {
             title: "Ekstrakurikuler",
             dataIndex: "ekstrakurikuler",
@@ -364,10 +364,10 @@ export default function Pengajar({ pengajar, matpel }) {
     return (
         <>
             <Head>
-                <title>Pengajar | Sistem Informasi Mutiara</title>
+                <title>Pembina | Sistem Informasi Mutiara</title>
             </Head>
             <Content>
-                <Typography.Title level={2} style={{ margin: 0, padding: 0 }}>Pengajar</Typography.Title>
+                <Typography.Title level={2} style={{ margin: 0, padding: 0 }}>Pembina</Typography.Title>
                 <div className="mb-5 flex items-center justify-between">
                     <Breadcrumb items={[
                         {
@@ -376,7 +376,7 @@ export default function Pengajar({ pengajar, matpel }) {
                             }}>Dashboard</Link>
                         },
                         {
-                            title: "Pengajar"
+                            title: "Pembina"
                         }
                     ]} />
 
@@ -384,10 +384,10 @@ export default function Pengajar({ pengajar, matpel }) {
                         onClick={() => setOpen(true)}
                         type="primary"
                         icon={<PlusOutlined />}>
-                        Pengajar
+                        Pembina
                     </Button>
                 </div>
-                <Card title="Data Pengajar">
+                <Card title="Data Pembina">
                     <Table
                         loading={loadingFirst}
                         sticky
@@ -403,9 +403,9 @@ export default function Pengajar({ pengajar, matpel }) {
                         }}
                     />
                 </Card>
-                <Modal open={open} width={1200} style={{
+                <Modal open={open} centered width={1200} style={{
                     top: 10
-                }} footer={<Button icon={<SaveOutlined />} type="primary" onClick={() => form.submit()}>Submit</Button>} onCancel={handleCancel} title="Form Pengajar" >
+                }} footer={<Button icon={<SaveOutlined />} type="primary" onClick={() => form.submit()}>Submit</Button>} onCancel={handleCancel} title="Form Pembina" >
                     <Card className="m-[20px]">
                         <Form labelAlign="left" onFinish={handleSubmit} form={form} labelCol={{ span: 6 }} colon={false}>
                             <Row gutter={16}>
@@ -434,14 +434,7 @@ export default function Pengajar({ pengajar, matpel }) {
                                     ]}>
                                         <Input placeholder="Alamat" />
                                     </Form.Item>
-                                    <Form.Item label="Nomor Telp" name="noTelp" required rules={[
-                                        {
-                                            message: "Mohon isi nomor telepon",
-                                            required: true
-                                        }
-                                    ]}>
-                                        <Input placeholder="Nomor Telepon" />
-                                    </Form.Item>
+
                                 </Col>
                                 <Col span={12}>
                                     <Form.Item label="NIK" name="nik" required rules={[
@@ -452,7 +445,15 @@ export default function Pengajar({ pengajar, matpel }) {
                                     ]}>
                                         <Input max={16} placeholder="NIK" />
                                     </Form.Item>
-                                    <Form.Item label="Mengajar" name="mengajar" required rules={[
+                                    <Form.Item label="Nomor Telp" name="noTelp" required rules={[
+                                        {
+                                            message: "Mohon isi nomor telepon",
+                                            required: true
+                                        }
+                                    ]}>
+                                        <Input placeholder="Nomor Telepon" />
+                                    </Form.Item>
+                                    {/* <Form.Item label="Mengajar" name="mengajar" required rules={[
                                         {
                                             message: "Mohon pilih mengajar",
                                             required: true
@@ -462,7 +463,7 @@ export default function Pengajar({ pengajar, matpel }) {
                                             value: item?._id,
                                             label: item?.name
                                         }))} />
-                                    </Form.Item>
+                                    </Form.Item> */}
                                     <Form.Item label="Tanggal Lahir" name="tgl" required rules={[
                                         {
                                             message: "Mohon isi tanggal lahir",

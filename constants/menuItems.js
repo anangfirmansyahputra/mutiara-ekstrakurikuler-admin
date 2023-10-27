@@ -7,8 +7,8 @@ const items = [
         icon: <PieChartOutlined />,
     },
     {
-        label: "Pengajar",
-        key: "pengajar",
+        label: "Pembina",
+        key: "pembina",
         icon: <ReconciliationOutlined />,
     },
     {
@@ -22,8 +22,8 @@ const items = [
         icon: <UsergroupAddOutlined />,
     },
     {
-        label: "Absensi",
-        key: "absensi",
+        label: "Kelola Data Siswa",
+        key: "kelola-data-siswa",
         icon: <CarryOutOutlined />,
     },
     {
@@ -46,11 +46,11 @@ const items = [
         key: "gallery",
         icon: <CameraOutlined />,
     },
-    {
-        label: "Pelajaran",
-        key: "matpel",
-        icon: <FileSearchOutlined />,
-    },
+    // {
+    //     label: "Pelajaran",
+    //     key: "matpel",
+    //     icon: <FileSearchOutlined />,
+    // },
 ];
 
 export default items;

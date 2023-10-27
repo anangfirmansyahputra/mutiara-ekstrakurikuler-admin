@@ -20,15 +20,15 @@ export default function Dashboard({ gallery, matpel, pengajar, siswa, ekstrakuri
 
     const items = [
         {
-            title: "Pengajar",
+            title: "Pembina",
             text: pengajar?.data?.length,
             icon: (
                 <div className="rounded bg-red-200 p-1">
                     <UsersIcon className="h-5 w-5 text-red-500" />
                 </div>
             ),
-            link: "/secure/pengajar",
-            linkText: "Lihat semua pengajar",
+            link: "/secure/pembina",
+            linkText: "Lihat semua pembina",
             bg: "bg-red-100",
         },
         {
@@ -75,17 +75,17 @@ export default function Dashboard({ gallery, matpel, pengajar, siswa, ekstrakuri
             link: "/secure/kelas",
             linkText: "Lihat semua kelas",
         },
-        {
-            title: "Mata Pelajaran",
-            text: matpel?.length,
-            icon: (
-                <div className="rounded bg-slate-200 p-1">
-                    <CubeIcon className="h-5 w-5 text-slate-500" />
-                </div>
-            ),
-            link: "/secure/matpel",
-            linkText: "Lihat semua mata pelajaran",
-        },
+        // {
+        //     title: "Mata Pelajaran",
+        //     text: matpel?.length,
+        //     icon: (
+        //         <div className="rounded bg-slate-200 p-1">
+        //             <CubeIcon className="h-5 w-5 text-slate-500" />
+        //         </div>
+        //     ),
+        //     link: "/secure/matpel",
+        //     linkText: "Lihat semua mata pelajaran",
+        // },
         {
             title: "Prestasi",
             text: prestasi?.data?.length,

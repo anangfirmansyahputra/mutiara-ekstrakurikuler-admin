@@ -1,16 +1,31 @@
 import ekstrakurikulerService from "@/services/ekstrakurikuler.service";
 import nilaiService from "@/services/nilai.service";
-import { Button, Form, Input, InputNumber, Modal, Table, Card } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { Button, Form, Input, InputNumber, Modal, Table, Card, Space } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Highlighter from "react-highlight-words";
 import Swal from "sweetalert2";
 
 export default function NilaiModal(props) {
     const [form] = Form.useForm()
     const router = useRouter()
+    const searchInput = useRef(null);
 
     const [open, setOpen] = useState(false)
     const [selectSiswa, setSelecSiswa] = useState(null)
+    const [searchedColumn, setSearchedColumn] = useState("")
+
+    const [searchText, setSearchText] = useState('');
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
+    };
+    const handleReset = (clearFilters) => {
+        clearFilters();
+        setSearchText('');
+    };
 
     const data = props?.data?.pendaftar?.map(item => ({
         key: item?._id,
@@ -32,6 +47,94 @@ export default function NilaiModal(props) {
         form.resetFields()
     }
 
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+            <div
+                style={{
+                    padding: 8,
+                }}
+                onKeyDown={(e) => e.stopPropagation()}>
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{
+                        marginBottom: 8,
+                        display: "block",
+                    }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}>
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => clearFilters && handleReset(clearFilters)}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}>
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            confirm({
+                                closeDropdown: false,
+                            });
+                            setSearchText(selectedKeys[0]);
+                            setSearchedColumn(dataIndex);
+                        }}>
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}>
+                        close
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: (filtered) => (
+            <SearchOutlined
+                style={{
+                    color: filtered ? "#1890ff" : undefined,
+                }}
+            />
+        ),
+        onFilter: (value, record) => record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilterDropdownOpenChange: (visible) => {
+            if (visible) {
+                setTimeout(() => searchInput.current?.select(), 100);
+            }
+        },
+        render: (text) =>
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={{
+                        padding: 0,
+                    }}
+                    searchWords={[searchText]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ""}
+                />
+            ) : (
+                text
+            ),
+    });
+
     const columns = [
         {
             title: "Nama",
@@ -46,7 +149,8 @@ export default function NilaiModal(props) {
         {
             title: "Kelas",
             key: "kelas",
-            dataIndex: "kelas"
+            dataIndex: "kelas",
+            ...getColumnSearchProps("kelas"),
         },
         {
             title: "Nilai",
@@ -120,7 +224,7 @@ export default function NilaiModal(props) {
                         <Form.Item label="Nama" name="name">
                             <Input disabled />
                         </Form.Item>
-                        <Form.Item label="Nilai" name="nilai">
+                        <Form.Item label="Nilai Praktek" name="nilai">
                             <InputNumber placeholder="0" style={{ width: "100%" }} maxLength={3} max={100} />
                         </Form.Item>
                     </Form>

@@ -3,6 +3,7 @@ import { CheckOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons"
 import { Button, Card, Col, Form, Input, Modal, Row, Select, Space, Table } from "antd";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
+import Highlighter from "react-highlight-words";
 import Swal from "sweetalert2";
 
 export default function AbsenModal(props) {
@@ -13,6 +14,16 @@ export default function AbsenModal(props) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [pertemuan, setPertemuan] = useState(0)
+    const [searchText, setSearchText] = useState('');
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
+    };
+    const handleReset = (clearFilters) => {
+        clearFilters();
+        setSearchText('');
+    };
 
     const handleClose = () => {
         setPertemuan(0)

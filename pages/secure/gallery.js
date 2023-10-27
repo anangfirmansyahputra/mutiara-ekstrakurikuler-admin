@@ -187,7 +187,7 @@ export default function Gallery({ gallery, ekstrakurikuler }) {
                         e.preventDefault()
                         handleDelete(id)
                     }}>
-                        Delete
+                        Hapus
                     </a>
                 ),
                 key: '2',
