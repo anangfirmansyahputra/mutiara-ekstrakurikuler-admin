@@ -131,7 +131,7 @@ export default function DetailSiswaModal(props) {
                             <Descriptions.Item labelStyle={{
                                 width: "40%"
                             }} label="Ekstrakurikuler Wajib">{wajib?.ekstrakurikuler?.name ?? "Belum memilih"}</Descriptions.Item>
-                            <Descriptions.Item label="Nilai Akademik">{wajib?.nilai}</Descriptions.Item>
+                            <Descriptions.Item label="Nilai Praktek">{wajib?.nilai}</Descriptions.Item>
                             <Descriptions.Item label="Nilai Absen">{nilaiAbsen(wajib?.kehadiran)}</Descriptions.Item>
                             <Descriptions.Item label="Nilai Total">
                                 {totalNilai(wajib?.nilai, wajib?.kehadiran)}
@@ -153,7 +153,7 @@ export default function DetailSiswaModal(props) {
                             <Descriptions.Item labelStyle={{
                                 width: "40%"
                             }} label="Ekstrakurikuler Pilihan">{pilihan?.ekstrakurikuler?.name ?? "Belum memilih"}</Descriptions.Item>
-                            <Descriptions.Item label="Nilai Akademik">{pilihan?.nilai}</Descriptions.Item>
+                            <Descriptions.Item label="Nilai Praktek">{pilihan?.nilai}</Descriptions.Item>
                             <Descriptions.Item label="Nilai Absen">{nilaiAbsen(pilihan?.kehadiran)}</Descriptions.Item>
                             <Descriptions.Item label="Nilai Total">
                                 {totalNilai(pilihan?.nilai, pilihan?.kehadiran)}
